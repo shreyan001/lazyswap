@@ -38,6 +38,9 @@ dependencies:
   tsc-node:
     specifier: ^0.0.3
     version: 0.0.3
+  zod:
+    specifier: ^3.23.8
+    version: 3.23.8
 
 devDependencies:
   '@types/node':

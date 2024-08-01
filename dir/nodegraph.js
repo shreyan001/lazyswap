@@ -19,6 +19,8 @@ const output_parsers_1 = require("@langchain/core/output_parsers");
 const messages_1 = require("@langchain/core/messages");
 const langgraph_3 = require("@langchain/langgraph");
 const groq_1 = require("@langchain/groq");
+const dotenv_1 = require("dotenv");
+(0, dotenv_1.config)();
 const swapSDK = new swap_1.SwapSDK({
     network: "perseverance", //
     broker: {

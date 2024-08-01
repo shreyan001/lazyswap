@@ -13,6 +13,8 @@ import { START } from "@langchain/langgraph";
 import {z} from "zod";
 import { ChatGroq } from "@langchain/groq";
 
+import { config } from 'dotenv';
+config();
 
 const swapSDK = new SwapSDK({
     network: "perseverance", //

@@ -4,8 +4,9 @@
   "description": "lazy swap is AI powered text to swap ",
   "main": "index.mjs",
   "scripts": {
-    "test": "node index.mjs",
-    "start": "tsc && nodemon --env-file .env --ext ts,js,mjs,cjs,json  dir/index.js"
+    "test": "tsc && nodemon --env-file .env --ext ts,js,mjs,cjs,json  dir/index.js",
+    "start": "npm run build && node dir/index.js",
+    "build": "tsc"
   },
   "author": "gatesmanX12",
   "license": "MIT",
@@ -20,7 +21,8 @@
     "langchain": "^0.2.11",
     "nodemon": "^3.1.4",
     "telegraf": "^4.16.3",
-    "tsc-node": "^0.0.3"
+    "tsc-node": "^0.0.3",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20.14.11",
