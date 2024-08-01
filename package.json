@@ -1,0 +1,29 @@
+{
+  "name": "lazyswap",
+  "version": "1.0.0",
+  "description": "lazy swap is AI powered text to swap ",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "node index.mjs",
+    "start": "tsc && nodemon --env-file .env --ext ts,js,mjs,cjs,json  dir/index.js"
+  },
+  "author": "gatesmanX12",
+  "license": "MIT",
+  "dependencies": {
+    "@chainflip/sdk": "^1.4.3",
+    "@langchain/cloudflare": "^0.0.6",
+    "@langchain/core": "^0.2.18",
+    "@langchain/groq": "^0.0.15",
+    "@langchain/langgraph": "^0.0.28",
+    "@langchain/openai": "^0.2.5",
+    "dotenv": "^16.4.5",
+    "langchain": "^0.2.11",
+    "nodemon": "^3.1.4",
+    "telegraf": "^4.16.3",
+    "tsc-node": "^0.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.11",
+    "typescript": "^5.5.3"
+  }
+}
