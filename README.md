@@ -2,6 +2,36 @@
 
 # LazySwap: AI-Powered Cross-Chain Swaps Made Simple
 
+
+Certainly! Here is the Markdown for the installation steps, including the `.env` file setup:
+
+
+## Installation
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/yourusername/lazyswap.git
+   cd lazyswap
+   ```
+
+2. Install dependencies:
+   ```sh
+   pnpm install
+   ```
+
+3. Set up your environment variables:
+   Create a `.env` file in the root directory with the following content:
+   ```env
+   TELEGRAM_BOT_API=""
+   GROQ_API_KEY=''
+   ```
+
+4. Start the bot:
+   ```sh
+   pnpm start
+   ```
+
+
 ## Vision
 
 LazySwap revolutionizes cross-chain cryptocurrency swaps by combining artificial intelligence with Chainflip's powerful SDK. Our vision is to make complex blockchain operations as simple as sending a text message, accessible to users of all experience levels.
@@ -21,35 +51,6 @@ LazySwap revolutionizes cross-chain cryptocurrency swaps by combining artificial
 - **Broker APIs' RPC Drop-Ins**: Ensures efficient connectivity with various blockchain networks.
 - **ChatGroq LLM**: Processes natural language inputs and generates appropriate responses.
 
-## Key Features
-
-- Natural language processing for intuitive interactions
-- Support for multiple chains and tokens
-- Real-time quote generation
-- Secure, non-custodial swaps
-- Detailed instructions and safety reminders
-
-## Innovation Highlights
-
-- **Simplicity**: Complete transactions with just a few lines of conversation.
-- **Comprehensive Support**: Swap nearly any token across multiple chains without restrictions.
-- **AI-Driven Assistance**: Intelligent, context-aware responses guide users accurately.
-- **Open-Source Foundation**: Built on transparent, community-driven technologies.
-
-
-## Future Prospects
-
-1. **Chat-based V4 Hooks**: Integrating Uniswap-like V4 hooks that can be deployed and used alongside the Chainflip SDK, expanding LazySwap's functionality and interoperability with other DeFi protocols.
-
-2. **LazySwap Widget**: Developing a widget version of LazySwap that can be easily integrated into other applications, allowing for quick asset swaps within various platforms and ecosystems.
-
-3. **Multi-Language Support**: Expanding the bot's capabilities to serve a global user base by supporting multiple languages.
-
-4. **Advanced Analytics**: Implementing features to provide users with market insights and swap recommendations, enhancing the decision-making process.
-
-5. **Cross-Platform Expansion**: Extending LazySwap's functionality beyond Telegram to other messaging and social media platforms, increasing accessibility and user reach.
-
-These future prospects highlight LazySwap's potential for growth and its focus on convenience, integration, and adaptability in the evolving DeFi landscape.
 
 ## Links
 
