@@ -3,33 +3,6 @@
 # LazySwap: AI-Powered Cross-Chain Swaps Made Simple
 
 
-## Installation
-
-
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/yourusername/lazyswap.git
-   cd lazyswap
-   ```
-
-2. Install dependencies:
-   ```sh
-   pnpm install
-   ```
-
-3. Set up your environment variables:
-   Create a `.env` file in the root directory with the following content:
-   ```sh
-   TELEGRAM_BOT_API=""
-   GROQ_API_KEY=''
-   ```
-
-4. Start the bot:
-   ```sh
-   pnpm start
-   ```
-
-
 ## Vision
 
 LazySwap revolutionizes cross-chain cryptocurrency swaps by combining artificial intelligence with Chainflip's powerful SDK. Our vision is to make complex blockchain operations as simple as sending a text message, accessible to users of all experience levels.
