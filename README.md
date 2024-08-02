@@ -1,4 +1,3 @@
----
 
 # LazySwap: AI-Powered Cross-Chain Swaps Made Simple
 
@@ -61,6 +60,6 @@ LazySwap revolutionizes cross-chain cryptocurrency swaps by combining artificial
 
 ![LazySwap Workflow](https://cdn.dorahacks.io/static/files/191105c3cc5269f3940254e4b588bce3.png)
 
----
+
 
 LazySwap represents the future of cross-chain interactions, bridging the gap between complex blockchain operations and user-friendly experiences. By leveraging AI and Chainflip's SDK, we're not just participating in the Cross Chain Hack; we're paving the way for more accessible blockchain interactions.
