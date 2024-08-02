@@ -59,27 +59,10 @@ config();
     return next();
   });
 
- // Help command
-bot.command('help', async (ctx) => {
-  const helpMessage = `
-Here are the available commands:
-
-/start - Start or restart the bot
-/refresh - Clear your current session and start fresh
-/help - Show this help message
-/status - Check the bot's current status
-/supported_tokens - List supported tokens
-/faq - Show frequently asked questions
-/cancel - Cancel the current operation
-
-To start a swap, simply send a message like:
-"I want to swap 0.1 BTC to ETH"
-  `;
-  await ctx.reply(helpMessage);
-});
 
 // Refresh command
 bot.command('refresh', async (ctx) => {
+ 
   if (ctx.session) {
     ctx.session.messages = [];
     ctx.session.graph = nodegraph();
@@ -89,101 +72,13 @@ bot.command('refresh', async (ctx) => {
   }
 });
 
-async function getSwapLimits() {
-  return await swapSDK.getSwapLimits();
-}
-
-function formatTokenLimits(limits) {
-  const { minimumSwapAmounts, maximumSwapAmounts } = limits;
-  const formatAmounts = (amounts) => {
-    return Object.entries(amounts).map(([token, amount]) => `${token}: ${amount}`).join('\n');
-  };
-
-  let formattedMessage = "Token Limits:\n\nMinimum Swap Amounts:\n";
-
-  for (const [chain, tokens] of Object.entries(minimumSwapAmounts)) {
-    formattedMessage += `\n${chain}:\n${formatAmounts(tokens)}`;
-  }
-
-  formattedMessage += "\n\nMaximum Swap Amounts:\n";
-
-  for (const [chain, tokens] of Object.entries(maximumSwapAmounts)) {
-    formattedMessage += `\n${chain}:\n${formatAmounts(tokens)}`;
-  }
-
-  return formattedMessage;
-}
-
-bot.command('tokenlimits', async (ctx) => {
-  try {
-    const limits = await getSwapLimits();
-    const formattedMessage = formatTokenLimits(limits);
-    ctx.reply(formattedMessage);
-  } catch (error) {
-    console.error('Error fetching token limits:', error);
-    ctx.reply('Sorry, there was an error fetching the token limits. Please try again later.');
-  }
-});
-
-// Status command
-bot.command('status', async (ctx) => {
-  const uptime = process.uptime();
-  const uptimeString = `${Math.floor(uptime / 3600)}h ${Math.floor((uptime % 3600) / 60)}m ${Math.floor(uptime % 60)}s`;
-  await ctx.reply(`Bot is running.\nUptime: ${uptimeString}`);
-});
-
-bot.command('supported_tokens', async (ctx) => {
-  try {
-    const supportedChains = await swapSDK.getChains();
-    let message = 'Supported tokens by chain:\n\n';
-    
-    for (const chain of supportedChains) {
-      /* @ts-ignore */
-      const assets = await swapSDK.getAssets(chain[name]);
-      const assetSymbols = assets.map(asset => asset.symbol).join(', ');
-      message += `${chain.name}:\n${assetSymbols}\n\n`;
-    }
-    
-    await ctx.reply(message);
-  } catch (error) {
-    console.error('Error fetching supported tokens:', error);
-    await ctx.reply('Sorry, I couldn\'t fetch the list of supported tokens at the moment.');
-  }
-});
 
 
-// FAQ command
-bot.command('faq', async (ctx) => {
-  const faqMessage = `
-Frequently Asked Questions:
+// Define the permanent keyboard
 
-Q: How does LazySwap work?
-A: LazySwap uses AI to understand your swap request and facilitates cross-chain swaps using the Chainflip protocol.
 
-Q: Is there a minimum swap amount?
-A: Yes, the minimum varies by token but is typically around $10-$20 worth.
 
-Q: How long does a swap take?
-A: Most swaps complete within a few minutes, depending on network congestion.
 
-Q: Are my funds safe?
-A: LazySwap is non-custodial, meaning we never hold your funds. Swaps are executed directly through the Chainflip protocol.
-
-For more questions, visit our website or contact support.
-  `;
-  await ctx.reply(faqMessage);
-});
-
-// Cancel command
-bot.command('cancel', async (ctx) => {
-  if (ctx.session) {
-    ctx.session.messages = [];
-    ctx.session.graph = {};
-    await ctx.reply('Current operation cancelled. You can start a new request.');
-  } else {
-    await ctx.reply('No active operation to cancel.');
-  }
-});
   bot.command('start', (ctx) => {
     const username = ctx.message.from.username || 'there';
     const welcomeMessage = `
@@ -207,8 +102,36 @@ bot.command('cancel', async (ctx) => {
   Ready to start swapping? Just tell me what you'd like to do, or ask any questions you have about our service. Let's make crypto swaps a breeze! 🌪️💰
     `;
 
-    ctx.reply(welcomeMessage);
+    ctx.reply(welcomeMessage, 
+      Markup.keyboard([
+        ["🔄 Refresh", "ℹ️ Help"] // Row1 with 2 buttons
+      ])
+      );
   });
+
+// Handle button presses
+bot.hears("🔄 Refresh", async (ctx) => {
+  if (ctx.session) {
+    ctx.session.messages = [];
+    await ctx.reply('Your session has been refreshed. You can start a new conversation now.');
+  } else {
+    await ctx.reply('Unable to refresh session. Please try again later.');
+  }
+});
+
+bot.hears("ℹ️ Help", async (ctx) => {
+  const helpMessage = `
+Here are the available commands:
+
+/start - Start or restart the bot
+/refresh - Clear your current session and start fresh
+/help - Show this help message
+
+To start a swap, simply send a message like:
+"I want to swap 0.1 BTC to ETH"
+  `;
+  await ctx.reply(helpMessage);
+});
 
   // Don't forget to launch your bot
 

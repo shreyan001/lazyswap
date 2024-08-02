@@ -97,8 +97,8 @@ function nodegraph() {
         - Only accept supported chains (Ethereum, Polkadot, Bitcoin, Arbitrum).
         - Assume ETH is on the Ethereum chain unless explicitly stated otherwise.
         - The minimum amount for ETH swaps is 0.01 ETH.
-        - The minimum amount for other tokens is 1 token.
-        - The maximum amount for any token is 100 token.
+        - The minimum amount for other tokens is 1 token (e.g USDT, USDC, FLIP).
+        - The maximum amount for any token is 10 token (e.g., ETH, BTC, USDT, USDC, FLIP).
         - Users may optionally provide a deposit address. If provided, use it; otherwise, default to "null".
         
         Always ensure you have all five required fields (source token, source chain, destination token, destination chain, amount) before proceeding.

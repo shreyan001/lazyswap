@@ -27,6 +27,7 @@ const chains_1 = require("langchain/chains");
 const langgraph_1 = require("@langchain/langgraph");
 const messages_1 = require("@langchain/core/messages");
 const nodegraph_js_1 = __importDefault(require("./nodegraph.js"));
+const swap_1 = require("@chainflip/sdk/swap");
 const dotenv_1 = require("dotenv");
 (0, dotenv_1.config)();
 // Initialize Cloudflare Workers AI model
@@ -34,6 +35,13 @@ const model = new cloudflare_1.ChatCloudflareWorkersAI({
     model: "@hf/thebloke/neural-chat-7b-v3-1-awq",
     cloudflareAccountId: process.env.CLOUDFLARE_ACCOUNT_ID,
     cloudflareApiToken: process.env.CLOUDFLARE_API_TOKEN,
+});
+const swapSDK = new swap_1.SwapSDK({
+    network: "perseverance",
+    broker: {
+        url: 'https://perseverance.chainflip-broker.io/rpc/d3f87d92c7174654a789517624181972',
+        commissionBps: 15, // basis points, i.e. 100 = 1%
+    },
 });
 const WEB_APP_URL = "https://feathers.studio/telegraf/webapp/example";
 const bot = new telegraf_1.Telegraf(process.env.TELEGRAM_BOT_API);
@@ -48,7 +56,18 @@ bot.use((ctx, next) => {
     });
     return next();
 });
-bot.command("stop", ctx => ctx.reply("Launch mini app from inline keyboard!", telegraf_1.Markup.inlineKeyboard([telegraf_1.Markup.button.webApp("Launch", WEB_APP_URL), telegraf_1.Markup.button.webApp("Launch", WEB_APP_URL)])));
+// Refresh command
+bot.command('refresh', (ctx) => __awaiter(void 0, void 0, void 0, function* () {
+    if (ctx.session) {
+        ctx.session.messages = [];
+        ctx.session.graph = (0, nodegraph_js_1.default)();
+        yield ctx.reply('Your session has been refreshed. You can start a new conversation now.');
+    }
+    else {
+        yield ctx.reply('Unable to refresh session. Please try again later.');
+    }
+}));
+// Define the permanent keyboard
 bot.command('start', (ctx) => {
     const username = ctx.message.from.username || 'there';
     const welcomeMessage = `
@@ -71,8 +90,33 @@ bot.command('start', (ctx) => {
 
   Ready to start swapping? Just tell me what you'd like to do, or ask any questions you have about our service. Let's make crypto swaps a breeze! 🌪️💰
     `;
-    ctx.reply(welcomeMessage);
+    ctx.reply(welcomeMessage, telegraf_1.Markup.keyboard([
+        ["🔄 Refresh", "ℹ️ Help"] // Row1 with 2 buttons
+    ]));
 });
+// Handle button presses
+bot.hears("🔄 Refresh", (ctx) => __awaiter(void 0, void 0, void 0, function* () {
+    if (ctx.session) {
+        ctx.session.messages = [];
+        yield ctx.reply('Your session has been refreshed. You can start a new conversation now.');
+    }
+    else {
+        yield ctx.reply('Unable to refresh session. Please try again later.');
+    }
+}));
+bot.hears("ℹ️ Help", (ctx) => __awaiter(void 0, void 0, void 0, function* () {
+    const helpMessage = `
+Here are the available commands:
+
+/start - Start or restart the bot
+/refresh - Clear your current session and start fresh
+/help - Show this help message
+
+To start a swap, simply send a message like:
+"I want to swap 0.1 BTC to ETH"
+  `;
+    yield ctx.reply(helpMessage);
+}));
 // Don't forget to launch your bot
 // Handle text messages
 bot.on((0, filters_1.message)('text'), (ctx) => __awaiter(void 0, void 0, void 0, function* () {
