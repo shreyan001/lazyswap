@@ -19,7 +19,7 @@
 
 3. Set up your environment variables:
    Create a `.env` file in the root directory with the following content:
-   ```env
+   ```sh
    TELEGRAM_BOT_API=""
    GROQ_API_KEY=''
    ```
