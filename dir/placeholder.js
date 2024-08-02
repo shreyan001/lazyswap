@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const swap_1 = require("@chainflip/sdk/swap");
 const groq_1 = require("@langchain/groq");
 const swapSDK = new swap_1.SwapSDK({
-    network: "perseverance", //
+    network: "perseverance",
     broker: {
         url: 'https://perseverance.chainflip-broker.io/rpc/d3f87d92c7174654a789517624181972',
         commissionBps: 15, // basis points, i.e. 100 = 1%
@@ -33,7 +33,7 @@ const REKT = () => __awaiter(void 0, void 0, void 0, function* () {
         destChain: swap_1.Chains.Ethereum,
         srcAsset: swap_1.Assets.ETH,
         destAsset: swap_1.Assets.USDT,
-        amount: (10e18).toString(), // 1.5 ETH
+        amount: (10e18).toString(),
         brokerCommissionBps: 15, // 100 basis point = 1%
     };
     const response = yield swapSDK.getQuote(quoteRequest);

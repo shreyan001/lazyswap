@@ -9,7 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = nodegraph;
 const swap_1 = require("@chainflip/sdk/swap");
 const prompts_1 = require("@langchain/core/prompts");
 const langgraph_1 = require("@langchain/langgraph");
@@ -22,7 +21,7 @@ const groq_1 = require("@langchain/groq");
 const dotenv_1 = require("dotenv");
 (0, dotenv_1.config)();
 const swapSDK = new swap_1.SwapSDK({
-    network: "perseverance", //
+    network: "perseverance",
     broker: {
         url: 'https://perseverance.chainflip-broker.io/rpc/d3f87d92c7174654a789517624181972',
         commissionBps: 15, // basis points, i.e. 100 = 1%
@@ -33,7 +32,7 @@ const model = new groq_1.ChatGroq({
     temperature: 0,
     apiKey: process.env.GROQ_API_KEY,
 });
-const chainflipValidation = (_a) => __awaiter(void 0, [_a], void 0, function* ({ sourceChain, sourceToken, destChain, destToken }) {
+const chainflipValidation = ({ sourceChain, sourceToken, destChain, destToken }) => __awaiter(void 0, void 0, void 0, function* () {
     const supportedChains = yield swapSDK.getChains();
     const chainNames = supportedChains.map(chain => chain.name.toLowerCase());
     if (!chainNames.includes(sourceChain.toLowerCase()) || !chainNames.includes(destChain.toLowerCase())) {
@@ -424,5 +423,6 @@ The final amount received may vary due to market conditions and network fees.
     graph.addEdge("generateDeposit_node", langgraph_2.END);
     return graph.compile();
 }
+exports.default = nodegraph;
 ;
 nodegraph();

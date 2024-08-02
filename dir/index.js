@@ -88,16 +88,21 @@ bot.on((0, filters_1.message)('text'), (ctx) => __awaiter(void 0, void 0, void 0
         const stream = yield session.graph.stream({ messages: session.messages });
         let lastResponse = '';
         try {
-            for (var _d = true, stream_1 = __asyncValues(stream), stream_1_1; stream_1_1 = yield stream_1.next(), _a = stream_1_1.done, !_a; _d = true) {
+            for (var _d = true, stream_1 = __asyncValues(stream), stream_1_1; stream_1_1 = yield stream_1.next(), _a = stream_1_1.done, !_a;) {
                 _c = stream_1_1.value;
                 _d = false;
-                const value = _c;
-                const [nodeName, output] = Object.entries(value)[0];
-                /* @ts-ignore */
-                console.log(nodeName, output.messages[0].content);
-                if (nodeName !== langgraph_1.END) {
+                try {
+                    const value = _c;
+                    const [nodeName, output] = Object.entries(value)[0];
                     /* @ts-ignore */
-                    lastResponse = output.messages[0].content;
+                    console.log(nodeName, output.messages[0].content);
+                    if (nodeName !== langgraph_1.END) {
+                        /* @ts-ignore */
+                        lastResponse = output.messages[0].content;
+                    }
+                }
+                finally {
+                    _d = true;
                 }
             }
         }
