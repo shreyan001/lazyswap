@@ -9,13 +9,13 @@ Certainly! Here is the Markdown for the installation steps, including the `.env`
 ## Installation
 
 1. Clone the repository:
-   ```sh
+   ```
    git clone https://github.com/yourusername/lazyswap.git
    cd lazyswap
    ```
 
 2. Install dependencies:
-   ```sh
+   ```
    pnpm install
    ```
 
@@ -27,7 +27,7 @@ Certainly! Here is the Markdown for the installation steps, including the `.env`
    ```
 
 4. Start the bot:
-   ```sh
+   ```
    pnpm start
    ```
 
