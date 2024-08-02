@@ -3,6 +3,37 @@
 # LazySwap: AI-Powered Cross-Chain Swaps Made Simple
 
 
+## Installation
+
+1. **Clone the Repository**:
+   ```bash
+   git clone <YOUR_REPOSITORY_URL>
+   cd <YOUR_REPOSITORY_DIRECTORY>
+   ```
+
+2. **Install Dependencies**:
+   Ensure you have `pnpm` installed. If not, install it using:
+   ```bash
+   npm install -g pnpm
+   ```
+   Then, install project dependencies:
+   ```bash
+   pnpm install
+   ```
+
+3. **Create `.env` File**:
+   Create a `.env` file in the root of your project directory with the following content:
+   ```dotenv
+   TELEGRAM_BOT_API=<YOUR_TELEGRAM_BOT_API_KEY>
+   GROQ_API_KEY=<YOUR_GROQ_API_KEY>
+   ```
+
+4. **Start the Project**:
+   ```bash
+   pnpm start
+   ```
+
+
 ## Vision
 
 LazySwap revolutionizes cross-chain cryptocurrency swaps by combining artificial intelligence with Chainflip's powerful SDK. Our vision is to make complex blockchain operations as simple as sending a text message, accessible to users of all experience levels.
