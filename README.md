@@ -6,8 +6,8 @@
 
 1. **Clone the Repository**:
    ```bash
-   git clone <YOUR_REPOSITORY_URL>
-   cd <YOUR_REPOSITORY_DIRECTORY>
+   git clone [<YOUR_REPOSITORY_URL>](https://github.com/shreyan001/lazyswap)
+   cd lazyswap
    ```
 
 2. **Install Dependencies**:
