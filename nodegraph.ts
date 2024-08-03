@@ -102,10 +102,10 @@ export default function nodegraph() {
         Tokens refer to the digital assets you want to swap, such as cryptocurrencies like ETH, BTC, USDT, and USDC. Chains refer to the blockchain networks these tokens reside on, such as Ethereum, Polkadot, Bitcoin, and Arbitrum.
         
         Currently supported chains on the Perseverance testnet include:
-        - Ethereum (EVM Chain ID: 11155111, requires 7 block confirmations)
-        - Polkadot (requires undefined block confirmations)
+        - Ethereum ( requires 7 block confirmations)
+        - Polkadot (requires 1 block confirmations)
         - Bitcoin (requires 6 block confirmations)
-        - Arbitrum (EVM Chain ID: 421614, requires 2 block confirmations)
+        - Arbitrum ( requires 2 block confirmations)
         
         If a user mentions Sepolia or Sepolia Ethereum, understand that it means the Ethereum chain.
         
