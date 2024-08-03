@@ -170,14 +170,18 @@ bot.on(message('text'), async (ctx) => {
     const match = lastResponse.match(channelIdRegex);
     if (match) {
       const depositChannelId = match[0];
-     
-      await ctx.reply(
-        
-        'You can check your transaction status or scan QR code to complete the transaction ',
-        Markup.inlineKeyboard([
-          Markup.button.webApp('Open Payment QR', `https://lazyswapbot.vercel.app/?id=${depositChannelId}`)
-        ])
-      );
+      
+      // Check if the chat is a group or supergroup
+      const isGroup = ctx.chat.type === 'group' || ctx.chat.type === 'supergroup';
+      
+      if (!isGroup) {
+        await ctx.reply(
+          'You can check your transaction status or scan QR code to complete the transaction',
+          Markup.inlineKeyboard([
+            Markup.button.webApp('Open Payment QR', `https://lazyswapbot.vercel.app/?id=${depositChannelId}`)
+          ])
+        );
+      } 
     }
 
   } catch (error) {
