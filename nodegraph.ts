@@ -121,7 +121,7 @@ export default function nodegraph() {
         - Only accept supported chains (Ethereum, Polkadot, Bitcoin, Arbitrum).
         - Assume ETH is on the Ethereum chain unless explicitly stated otherwise.
         - The minimum amount for ETH swaps is 0.01 ETH.
-        - The minimum amount for other tokens is 1 token (e.g USDT, USDC, FLIP).
+        - The minimum amount for other tokens is 1 token (e.g    USDT, USDC, FLIP).
         - The maximum amount for any token is 10 token (e.g., ETH, BTC, USDT, USDC, FLIP).
         - Users may optionally provide a deposit address. If provided, use it; otherwise, default to "null".
         
@@ -455,6 +455,7 @@ The final amount received may vary due to market conditions and network fees.
 <b>⚠️ Warning:</b> Any funds sent below the minimum amount of 0.01 ${state.swapValues.sourceToken} will be lost!
 
 <b>📊 Swap Details:</b>
+- <b>Channel ID:</b> ${result.depositChannelId}
 - <b>Deposit:</b> ${deposit.toFixed(6)} ${state.swapValues.sourceToken}
 - <b>Receive:</b> ${receive.toFixed(6)} ${state.swapValues.destToken}
 - <b>Estimated Rate:</b> ${deposit.toFixed(6)} ${state.swapValues.sourceToken} ≈ ${receive.toFixed(6)} ${state.swapValues.destToken}

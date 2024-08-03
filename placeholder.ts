@@ -48,7 +48,7 @@ const model = new ChatGroq({
     
     // (alias) const Chains: ArrayToMap<readonly ["Bitcoin", "Ethereum", "Polkadot", "Arbitrum"]>
     // import Chains
-
+    const response = await swapSDK.getStatus({id:'2028718-Ethereum-22'});
     const quoteRequest = {
       srcChain: Chains.Ethereum,
       destChain: Chains.Ethereum,
@@ -59,10 +59,10 @@ const model = new ChatGroq({
      
     };
 
-    const response = await swapSDK.getQuote(quoteRequest);
-const parsedResult = JSON.stringify(response, null, 2);
+//     const response = await swapSDK.getQuote(quoteRequest);
+// const parsedResult = JSON.stringify(response, null, 2);
      
-    console.log(parsedResult);
+    console.log(response);
 
 }
 

@@ -4,7 +4,7 @@
   "description": "lazy swap is AI powered text to swap ",
   "main": "index.mjs",
   "scripts": {
-    "test": "tsc && nodemon --env-file .env --ext ts,js,mjs,cjs,json  dir/index.js",
+    "test": "tsc && nodemon --env-file .env --ext ts,js,mjs,cjs,json  dir/placeholder.js",
     "start": "node dir/index.js",
     "build": "tsc"
   },

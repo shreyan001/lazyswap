@@ -43,7 +43,6 @@ const swapSDK = new swap_1.SwapSDK({
         commissionBps: 15, // basis points, i.e. 100 = 1%
     },
 });
-const WEB_APP_URL = "https://feathers.studio/telegraf/webapp/example";
 const bot = new telegraf_1.Telegraf(process.env.TELEGRAM_BOT_API);
 bot.use((0, telegraf_1.session)());
 // Initialize session
@@ -110,7 +109,6 @@ Here are the available commands:
 
 /start - Start or restart the bot
 /refresh - Clear your current session and start fresh
-/help - Show this help message
 
 To start a swap, simply send a message like:
 "I want to swap 0.1 BTC to ETH"
@@ -161,6 +159,14 @@ bot.on((0, filters_1.message)('text'), (ctx) => __awaiter(void 0, void 0, void 0
         yield ctx.telegram.deleteMessage(ctx.chat.id, loadingMessage.message_id);
         // Send AI response to user
         yield ctx.reply(lastResponse, { parse_mode: 'HTML' });
+        const channelIdRegex = /(\d+)-\w+-\d+/;
+        const match = lastResponse.match(channelIdRegex);
+        if (match) {
+            const depositChannelId = match[0];
+            yield ctx.reply('You can check your transaction status or scan QR code to complete the transaction ', telegraf_1.Markup.inlineKeyboard([
+                telegraf_1.Markup.button.webApp('Open Payment QR', `https://lazyswapbot.vercel.app/?id=${depositChannelId}`)
+            ]));
+        }
     }
     catch (error) {
         console.error('Error:', error);

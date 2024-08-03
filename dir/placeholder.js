@@ -28,6 +28,7 @@ const REKT = () => __awaiter(void 0, void 0, void 0, function* () {
     // import Assets
     // (alias) const Chains: ArrayToMap<readonly ["Bitcoin", "Ethereum", "Polkadot", "Arbitrum"]>
     // import Chains
+    const response = yield swapSDK.getStatus({ id: '2028718-Ethereum-22' });
     const quoteRequest = {
         srcChain: swap_1.Chains.Ethereum,
         destChain: swap_1.Chains.Ethereum,
@@ -36,8 +37,8 @@ const REKT = () => __awaiter(void 0, void 0, void 0, function* () {
         amount: (10e18).toString(),
         brokerCommissionBps: 15, // 100 basis point = 1%
     };
-    const response = yield swapSDK.getQuote(quoteRequest);
-    const parsedResult = JSON.stringify(response, null, 2);
-    console.log(parsedResult);
+    //     const response = await swapSDK.getQuote(quoteRequest);
+    // const parsedResult = JSON.stringify(response, null, 2);
+    console.log(response);
 });
 REKT();
